@@ -8,7 +8,19 @@ public class AppleAndOrange {
 
 	static int[] countApplesAndOranges(int s, int t, int a, int b, int[] apples, int[] oranges) {
 
-		int[] output = {1,1};
+		int[] output = new int[2];  //output[0]:Apples, output[1]:Oranges
+		
+		//apples 위치 계산
+		for(int i=0; i<apples.length; i++) {
+			apples[i] = a + apples[i];
+			if(apples[i] >= s && apples[i] <= t) output[0]++;
+		}
+		
+		//orange 위치 계산
+		for(int j=0; j<oranges.length; j++) {
+			oranges[j] = b + oranges[j];
+			if(oranges[j] >= s && oranges[j] <= t) output[1]++;
+		}
 		
 		return output;
     }
