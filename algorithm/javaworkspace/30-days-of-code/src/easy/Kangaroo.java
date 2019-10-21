@@ -12,13 +12,13 @@ public class Kangaroo {
 		
 		if(v1>v2) {
 			while(true) {
-				if( i*v1+x1>10000 || i*v2+x2>10000 ) break;
+				if( i*v1+x1 > i*v2+x2 ) break;
 				if( i*v1+x1 == i*v2+x2 ) return "YES";
 				i++;
 			}
 		}
-
-		return "NO";
+			return "NO";
+		
     }
 
 	
