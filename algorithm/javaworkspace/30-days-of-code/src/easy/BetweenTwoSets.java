@@ -11,36 +11,38 @@ import org.junit.Test;
 public class BetweenTwoSets {
 
 	public static int getTotalX(List<Integer> a, List<Integer> b) {
-		//List<Integer> result = new ArrayList<>();
+		List<Integer> result = new ArrayList<>();
 		int aLen = a.size();
 		int bLen = b.size();
 		int res = 0;
-		int[] arr = new int[100];
 		
+		//i가 두개의 Set 사이의 수 일때, 두 조건을 만족하는 값 찾기 
+		//조건1 : (i+1)가 a Set 요소들로 나누어 떨어지는지            (i+1) % a == 0 
+		//조건2 : (i+1)가 b Set 요소들을 나누어 떨어지게 하는지         b % (i+1) == 0
 		
-		for(int i=a.get(aLen-1); i<b.get(bLen-1); i++) {  //4~16
+		//조건1에 만족하는 값 result에 넣기
+		for(int i=a.get(aLen-1); i<=b.get(0); i++) {  //4~16
 			int cnt = 0;
 			for(Integer f:a) {
 				if(i%f!=0) break;
 				cnt++;
 			}
-			if(cnt==a.size()) arr[i-1]++;
+			if(cnt==a.size()) result.add(i); 
 		}
 		
-		for(int j=0; j<100; j++) {
+		//result 리스트에서 조건2 만족하는 값 찾기
+		for(Integer r:result) {
 			int cnt = 0;
 			for(Integer f:b) {
-				if(f%(j+1)!=0) break;
+				if(f%r != 0) break;
 				cnt++;
 			}
-			if(cnt==b.size()) arr[j]++;
-			if(arr[j]==2) res++;
+			if(cnt==b.size()) res++;
 		}
-		
-		
-		
 		return res;
 	}
+	
+	
 
 	
 	@Test
@@ -72,5 +74,18 @@ public class BetweenTwoSets {
 		int result = getTotalX(a, b);
 		//then
 		assertEquals(2, result);
+	}
+	
+	@Test
+	public void testGetTotalXFunction3() throws Exception {
+		//given
+		List<Integer> a = new ArrayList<>();
+		a.add(1);
+		List<Integer> b = new ArrayList<>();
+		b.add(100);
+		//when
+		int result = getTotalX(a, b);
+		//then
+		assertEquals(9, result);
 	}
 }
