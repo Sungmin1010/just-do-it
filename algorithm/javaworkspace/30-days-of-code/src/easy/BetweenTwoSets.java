@@ -3,6 +3,7 @@ package easy;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -15,6 +16,10 @@ public class BetweenTwoSets {
 		int aLen = a.size();
 		int bLen = b.size();
 		int res = 0;
+		
+		//a, b 정렬
+		Collections.sort(a);
+		Collections.sort(b);
 		
 		//i가 두개의 Set 사이의 수 일때, 두 조건을 만족하는 값 찾기 
 		//조건1 : (i+1)가 a Set 요소들로 나누어 떨어지는지            (i+1) % a == 0 
