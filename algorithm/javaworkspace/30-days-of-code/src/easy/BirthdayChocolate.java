@@ -9,7 +9,8 @@ import org.junit.Test;
 
 //https://www.hackerrank.com/challenges/the-birthday-bar/problem
 public class BirthdayChocolate {
-	
+	//배열로 푸는방법 : birthday1
+	//리스트로 푸는방법 : birthday2
 
 	static int birthday(List<Integer> s, int d, int m) {
 		//리스트 s를 배열로 만들어서 해결
@@ -24,6 +25,32 @@ public class BirthdayChocolate {
 		return result;
 		  
     }
+	
+	static int birthday2(List<Integer> s, int d, int m) {
+		//이중포문
+		int startIdx = 0;
+		int result = 0;
+		for(Integer i:s) {
+			if(startIdx+m > s.size()) break;
+			int sum = 0;
+			for(int j=startIdx; j<startIdx+m; j++) {
+				sum+=s.get(j);
+			}
+			if(sum==d) result++;
+			startIdx++;
+		}
+		
+		return result;
+		  
+    }
+	
+	static int sumList(List<Integer> list) {
+		int sum = 0;
+		for(Integer i:list) {
+			sum += i;
+		}
+		return sum;
+	}
 	
 	static int sumSubArray(Integer[] arr,int startIndx,int m) {
 		int totalSum = 0;
@@ -42,7 +69,9 @@ public class BirthdayChocolate {
 		int m = 2;
 		//when
 		int result = birthday(s, d, m);
+		int result2 = birthday2(s, d, m);
 		//then
 		assertEquals(2, result);
+		assertEquals(2, result2);
 	}
 }
