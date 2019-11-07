@@ -27,19 +27,12 @@ public class BirthdayChocolate {
     }
 	
 	static int birthday2(List<Integer> s, int d, int m) {
-		//이중포문
-		int startIdx = 0;
 		int result = 0;
-		for(Integer i:s) {
-			if(startIdx+m > s.size()) break;
-			int sum = 0;
-			for(int j=startIdx; j<startIdx+m; j++) {
-				sum+=s.get(j);
-			}
+		for(int i=0; i<=s.size()-m; i++) {
+			//i부터 i+1, i+2, ..., i+m 이전까지 정수를 모두 더하기
+			int sum = sumList(s.subList(i, i+m));
 			if(sum==d) result++;
-			startIdx++;
 		}
-		
 		return result;
 		  
     }
@@ -54,7 +47,6 @@ public class BirthdayChocolate {
 	
 	static int sumSubArray(Integer[] arr,int startIndx,int m) {
 		int totalSum = 0;
-		
 		for(int i=startIndx; i<startIndx+m; i++) {
 			totalSum += arr[i];
 		}
