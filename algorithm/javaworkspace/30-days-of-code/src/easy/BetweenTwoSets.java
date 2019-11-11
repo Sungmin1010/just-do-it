@@ -3,12 +3,19 @@ package easy;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameter;
+import org.junit.runners.Parameterized.Parameters;
 
 //https://www.hackerrank.com/challenges/between-two-sets/problem
+@RunWith(Parameterized.class)
 public class BetweenTwoSets {
 
 	public static int getTotalX(List<Integer> a, List<Integer> b) {
@@ -49,9 +56,32 @@ public class BetweenTwoSets {
 	
 	
 
+	@Parameters
+	public static Collection<Object[]> data(){
+		return Arrays.asList(new Object[][] {
+			{Arrays.asList(new Integer[] {2,4}),Arrays.asList(new Integer[] {16, 32, 96}), 3},
+			{Arrays.asList(new Integer[] {3,4}),Arrays.asList(new Integer[] {24,48}), 2},
+			{Arrays.asList(new Integer[] {1}),Arrays.asList(new Integer[] {100}), 9}
+		});
+	}
+	
+	@Parameter(0)
+	public List<Integer> a;
+	
+	
+	@Parameter(1)
+	public List<Integer> b;
+	
+	@Parameter(2)
+	public int result;
 	
 	@Test
 	public void testGetTotalXFunction() throws Exception {
+		assertEquals(result, getTotalX(a, b));
+	}
+	
+	//@Test
+	public void testGetTotalXFunction2() throws Exception {
 		//given
 		List<Integer> a = new ArrayList<>();
 		a.add(2);
@@ -66,8 +96,8 @@ public class BetweenTwoSets {
 		assertEquals(3, result);
 	}
 	
-	@Test
-	public void testGetTotalXFunction2() throws Exception {
+	//@Test
+	public void testGetTotalXFunction3() throws Exception {
 		//given
 		List<Integer> a = new ArrayList<>();
 		a.add(3);
@@ -81,8 +111,8 @@ public class BetweenTwoSets {
 		assertEquals(2, result);
 	}
 	
-	@Test
-	public void testGetTotalXFunction3() throws Exception {
+	//@Test
+	public void testGetTotalXFunction4() throws Exception {
 		//given
 		List<Integer> a = new ArrayList<>();
 		a.add(1);
