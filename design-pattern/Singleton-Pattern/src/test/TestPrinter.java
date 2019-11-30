@@ -13,7 +13,8 @@ public class TestPrinter {
 		Printer printer1 = Printer.getInstance();
 		Printer printer2 = Printer.getInstance();
 		
-		assertEquals(printer1, printer2);
+		//두 객체가 동일한 객체인지 주소값을 비교하는 단정문 assertSame
+		assertSame(printer1, printer2);
 	}
 
 }
